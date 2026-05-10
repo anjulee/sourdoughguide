@@ -1,0 +1,372 @@
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500&display=swap');
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --cream: #F9F4EC;
+  --wheat: #D4A96A;
+  --wheat-light: #EDD9B0;
+  --wheat-dark: #A07840;
+  --crust: #5C3D1E;
+  --crust-light: #8B6040;
+  --char: #1E1510;
+  --muted: #7A6A58;
+  --border: rgba(92,61,30,0.12);
+  --border-med: rgba(92,61,30,0.22);
+  --green: #3B5E1E;
+  --ltgreen: #EDF3E4;
+  --purple: #534AB7;
+  --ltpurp: #EEEDFE;
+  --blue: #185FA5;
+  --ltblue: #E6F1FB;
+  --teal: #0F6E56;
+  --ltteal: #E1F5EE;
+  --amber: #BA7517;
+  --ltamber: #FAEEDA;
+}
+
+.g { max-width: 680px; padding: 0 0 3rem; font-family: 'DM Sans', sans-serif; background: transparent; color: var(--char); }
+
+.logo-bar { display: flex; align-items: center; gap: 12px; padding: 1.75rem 0 1.5rem; border-bottom: 0.5px solid var(--border-med); margin-bottom: 2rem; }
+.logo-img { height: 36px; }
+.logo-divider { width: 0.5px; height: 28px; background: var(--border-med); }
+.logo-tagline { font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); font-family: 'DM Sans', sans-serif; font-weight: 400; }
+
+.hero { padding: 2rem 0 2.5rem; border-bottom: 0.5px solid var(--border); margin-bottom: 2.5rem; }
+.hero-eyebrow { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wheat-dark); font-weight: 500; margin-bottom: 0.75rem; font-family: 'DM Sans', sans-serif; }
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 600; color: var(--crust); line-height: 1.2; letter-spacing: -0.02em; margin-bottom: 0.75rem; }
+.hero h1 em { font-style: italic; font-weight: 400; color: var(--wheat-dark); }
+.hero p { font-size: 14px; color: var(--muted); line-height: 1.7; max-width: 500px; }
+
+.nav { position: sticky; top: 12px; display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 2.5rem; z-index: 10; background: rgba(249,244,236,0.95); padding: 10px 0; border-bottom: 0.5px solid var(--border); }
+.nb { font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); padding: 5px 12px; border-radius: 2px; border: 0.5px solid var(--border-med); cursor: pointer; background: transparent; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: all 0.15s; }
+.nb:hover { background: var(--crust); color: var(--cream); border-color: var(--crust); }
+
+.sec { margin-bottom: 3rem; }
+.sh { display: flex; align-items: center; gap: 10px; margin-bottom: 1.25rem; padding-bottom: 0.8rem; border-bottom: 0.5px solid var(--border); }
+.sh i { font-size: 18px; color: var(--wheat-dark); }
+.sh h2 { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 600; color: var(--crust); letter-spacing: -0.01em; }
+.sh h2 em { font-style: italic; font-weight: 400; color: var(--wheat-dark); }
+
+.body-text { font-size: 14px; color: var(--muted); line-height: 1.75; margin-bottom: 1.25rem; }
+
+.tip { background: var(--wheat-light); border-left: 3px solid var(--wheat-dark); border-radius: 0 3px 3px 0; padding: 0.85rem 1rem; margin-top: 0.75rem; }
+.tip p { font-size: 13px; color: var(--crust-light); line-height: 1.6; }
+.tip strong { color: var(--crust); font-weight: 500; }
+
+.step { display: flex; gap: 1rem; align-items: flex-start; margin-bottom: 1.1rem; }
+.sn { width: 28px; height: 28px; border-radius: 50%; background: var(--crust); color: var(--cream); font-size: 12px; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; font-family: 'Playfair Display', serif; }
+.sc h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--crust); margin-bottom: 4px; }
+.sc p { font-size: 13.5px; color: var(--muted); line-height: 1.65; }
+
+.tabs { display: flex; gap: 8px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+.tb { padding: 6px 14px; border: 0.5px solid var(--border-med); border-radius: 2px; background: transparent; color: var(--muted); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; font-family: 'DM Sans', sans-serif; font-weight: 500; transition: all 0.15s; }
+.tb:hover { background: var(--wheat-light); color: var(--crust); }
+.tb.on { background: var(--crust); color: var(--cream); border-color: var(--crust); }
+
+.panel { display: none; flex-direction: column; gap: 10px; }
+.panel.on { display: flex; }
+
+.card { background: var(--cream); border: 0.5px solid var(--border-med); border-radius: 3px; padding: 1.1rem 1.25rem; border-top: 2px solid var(--wheat-dark); }
+.card-tag { font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-radius: 2px; padding: 2px 8px; display: inline-block; margin-bottom: 6px; font-family: 'DM Sans', sans-serif; }
+.card h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--crust); margin-bottom: 5px; }
+.card p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+.hist-item { display: flex; gap: 0; }
+.hl { display: flex; flex-direction: column; align-items: center; width: 34px; flex-shrink: 0; }
+.hd { width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--wheat-dark); background: var(--cream); flex-shrink: 0; margin-top: 4px; }
+.hc { width: 1px; background: var(--border-med); flex: 1; min-height: 14px; }
+.hist-item:last-child .hc { display: none; }
+.hcon { padding: 0 0 1.1rem 0; flex: 1; }
+.hera { font-size: 10px; color: var(--wheat-dark); background: var(--wheat-light); border-radius: 2px; padding: 1px 8px; display: inline-block; margin-bottom: 4px; font-weight: 500; letter-spacing: 0.06em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+.hcon h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--crust); margin-bottom: 3px; }
+.hcon p { font-size: 13px; color: var(--muted); line-height: 1.65; }
+
+.wcard { border: 0.5px solid var(--border-med); border-radius: 3px; padding: 1.25rem; }
+.wcard h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--crust); margin-bottom: 1rem; display: flex; align-items: center; gap: 8px; }
+.wtips { display: flex; flex-direction: column; gap: 0.6rem; }
+.wt { display: flex; gap: 10px; align-items: flex-start; }
+.wt i { font-size: 16px; margin-top: 2px; flex-shrink: 0; }
+.wt p { font-size: 13.5px; color: var(--muted); line-height: 1.55; }
+.wt p strong { color: var(--crust); font-weight: 500; }
+
+.rg { display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; }
+.rc { background: var(--wheat-light); border-radius: 3px; padding: 1rem; text-align: center; border: 0.5px solid var(--border); }
+.rn { font-size: 22px; font-weight: 600; color: var(--crust); font-family: 'Playfair Display', serif; font-style: italic; }
+.rl { font-size: 11px; color: var(--muted); margin-bottom: 4px; letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; }
+.rs { font-size: 11px; color: var(--crust-light); margin-top: 5px; line-height: 1.4; }
+
+.titem { border: 0.5px solid var(--border-med); border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
+.thead { display: flex; align-items: center; gap: 10px; padding: 0.9rem 1rem; cursor: pointer; background: var(--cream); }
+.thead i.ic { font-size: 17px; }
+.thead span { font-size: 14px; font-weight: 500; color: var(--crust); flex: 1; font-family: 'Playfair Display', serif; }
+.thead i.ch { font-size: 16px; color: var(--muted); transition: transform 0.2s; }
+.tbody { display: none; padding: 0 1rem 0.9rem 3rem; font-size: 13px; color: var(--muted); line-height: 1.65; }
+.tbody.on { display: block; }
+.ch.rot { transform: rotate(180deg); }
+
+.fg { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 10px; }
+.fc { border: 0.5px solid var(--border-med); border-radius: 3px; padding: 0.9rem; }
+.fc.s { border-color: var(--wheat); background: var(--wheat-light); border-top: 2px solid var(--wheat-dark); }
+.fc h3 { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: var(--crust); margin-bottom: 4px; }
+.fc p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.fc.s p { color: var(--crust-light); }
+.fb { font-size: 10px; color: var(--wheat-dark); background: transparent; border: 0.5px solid var(--wheat-dark); border-radius: 2px; padding: 1px 7px; display: inline-block; margin-bottom: 5px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; font-family: 'DM Sans', sans-serif; }
+
+.ng { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 8px; }
+.nc { background: var(--cream); border: 0.5px solid var(--border-med); border-radius: 3px; padding: 0.85rem; }
+.nw { font-size: 16px; font-weight: 600; color: var(--crust); display: block; margin-bottom: 2px; font-family: 'Playfair Display', serif; }
+.nco { font-size: 10px; color: var(--wheat-dark); display: block; margin-bottom: 3px; letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; font-family: 'DM Sans', sans-serif; }
+.nm { font-size: 12px; color: var(--muted); font-style: italic; }
+
+.tl { position: relative; padding-left: 1.5rem; }
+.tl::before { content:''; position:absolute; left:6px; top:8px; bottom:8px; width:1px; background:var(--border-med); }
+.ti2 { position: relative; margin-bottom: 1.25rem; }
+.td { position: absolute; left: -1.5rem; top: 5px; width: 13px; height: 13px; border-radius: 50%; background: var(--cream); border: 2px solid var(--wheat-dark); }
+.ti2 .badge { display: inline-block; font-size: 10px; color: var(--wheat-dark); background: var(--wheat-light); border-radius: 2px; padding: 1px 8px; margin-bottom: 4px; letter-spacing: 0.07em; text-transform: uppercase; font-weight: 500; font-family: 'DM Sans', sans-serif; }
+.ti2 h3 { font-family: 'Playfair Display', serif; font-size: 14px; font-weight: 600; color: var(--crust); margin-bottom: 2px; }
+.ti2 p { font-size: 13px; color: var(--muted); line-height: 1.55; }
+
+.gg { display: grid; grid-template-columns: repeat(auto-fit,minmax(140px,1fr)); gap: 10px; }
+.gc { background: var(--cream); border: 0.5px solid var(--border-med); border-radius: 3px; padding: 0.9rem; }
+.gc.e { border-top: 2px solid var(--wheat-dark); }
+.gc i { font-size: 20px; color: var(--wheat-dark); display: block; margin-bottom: 7px; }
+.gc h3 { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; color: var(--crust); margin-bottom: 3px; }
+.gc p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+.ee-block { background: var(--wheat-light); border: 0.5px solid var(--border-med); border-top: 2px solid var(--wheat-dark); border-radius: 3px; padding: 1.1rem 1.25rem; margin-top: 10px; }
+.ee-block h3 { font-family: 'Playfair Display', serif; font-size: 15px; font-weight: 600; color: var(--crust); margin-bottom: 5px; font-style: italic; }
+.ee-block > p { font-size: 13px; color: var(--muted); line-height: 1.6; margin-bottom: 0.85rem; }
+.ee-cols { display: grid; grid-template-columns: repeat(auto-fit,minmax(150px,1fr)); gap: 10px; margin-top: 4px; }
+.ee-col h4 { font-family: 'Playfair Display', serif; font-size: 12px; font-weight: 600; color: var(--crust); margin-bottom: 3px; }
+.ee-col p { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+.closing { background: var(--crust); border-radius: 3px; padding: 2rem 1.75rem; margin-top: 0.5rem; }
+.closing p:first-child { font-family: 'Playfair Display', serif; font-size: 16px; color: var(--wheat-light); line-height: 1.7; font-style: italic; margin-bottom: 1rem; }
+.closing p:last-child { font-size: 12px; color: rgba(212,169,106,0.6); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; }
+
+.section-label { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--wheat-dark); font-weight: 500; margin-bottom: 0.5rem; display: block; font-family: 'DM Sans', sans-serif; }
+</style>
+
+<div class="g">
+
+<div class="logo-bar">
+  <img src="/mnt/user-data/uploads/1778430981698_image.png" class="logo-img" alt="Wild Crumb">
+  <div class="logo-divider"></div>
+  <span class="logo-tagline">Sourdough guide</span>
+</div>
+
+<div class="hero">
+  <p class="hero-eyebrow">Flour · Water · Salt · Time</p>
+  <h1>Your complete guide to <em>wild ferment</em></h1>
+  <p>From ancient Egyptian bakeries to your kitchen — history, culture, and everything you need to bake your first loaf.</p>
+</div>
+
+<div class="nav">
+  <button class="nb" onclick="go('history')">History</button>
+  <button class="nb" onclick="go('world')">Around the world</button>
+  <button class="nb" onclick="go('names')">Names</button>
+  <button class="nb" onclick="go('starter')">Starter</button>
+  <button class="nb" onclick="go('feeding')">Feeding</button>
+  <button class="nb" onclick="go('flour')">Flour</button>
+  <button class="nb" onclick="go('baking')">Baking</button>
+  <button class="nb" onclick="go('weather')">Weather</button>
+  <button class="nb" onclick="go('trouble')">Troubleshooting</button>
+  <button class="nb" onclick="go('kit')">Kit</button>
+</div>
+
+<div id="history" class="sec">
+  <div class="sh"><i class="ti ti-hourglass" aria-hidden="true"></i><h2>A brief <em>history</em></h2></div>
+  <p class="body-text">Sourdough is the oldest leavened bread in human history. Until commercial yeast was invented less than 200 years ago, it was the only way bread could rise. Every culture that baked bread, baked sourdough.</p>
+  <div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">~4,000–3,000 BCE · Ancient Egypt</span><h3>The accidental discovery</h3><p>Earliest evidence of leavened bread comes from Egypt — likely discovered when wild yeast drifted into wet grain. Egyptians had over 170 words for bread. Bakeries found at Giza fed the builders of the pyramids. Bakers kept cultures alive by saving raw dough from each batch — exactly as we do today.</p></div></div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">~800 BCE · Greece & Rome</span><h3>Symbol of civilization</h3><p>Greeks considered leavened bread a mark of civilized life and passed the knowledge to Rome, where the government distributed hundreds of thousands of free loaves every month. Roman legions spread sourdough traditions across Europe.</p></div></div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">Medieval · Monasteries</span><h3>Kept alive in monasteries</h3><p>After Rome's fall, monasteries became centres of bread and beer production. Monks in France, Germany, and Britain quietly maintained starter cultures for centuries, preserving the tradition through political upheaval.</p></div></div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">Medieval–early modern · Eastern Europe</span><h3>Rye, kvass, and the Slavic world</h3><p>Across Poland, Russia, Ukraine, and the Baltic states, sourdough became inseparable from daily survival. Rye bread requires sourdough to be digestible. Starters (zakwas, zakvaská) were passed down in families for generations. Stale rye was also fermented into kvass, consumed across the Slavic world for over a thousand years.</p></div></div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">1848 · California Gold Rush</span><h3>The sourdoughs of San Francisco</h3><p>French bakers brought levain to San Francisco, where the cool, foggy climate produced a uniquely tangy bread. Miners were nicknamed "sourdoughs." The Boudin Bakery has kept its original starter alive since 1849.</p></div></div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">19th–20th century</span><h3>Commercial yeast almost wins</h3><p>Commercial baker's yeast gradually replaced sourdough across much of the world. Germany, Scandinavia, and Eastern Europe were exceptions — rye bread requires sourdough, so the tradition never died out.</p></div></div>
+    <div class="hist-item"><div class="hl"><div class="hd"></div><div class="hc"></div></div><div class="hcon"><span class="hera">1980s–present</span><h3>The global revival</h3><p>An artisan bread movement revived sourdough from the 1980s onwards. The 2020 pandemic brought a massive new wave of home bakers. Today it has returned to kitchens worldwide — as bread, but also as a connection to something ancient, patient, and alive.</p></div></div>
+  </div>
+</div>
+
+<div id="world" class="sec">
+  <div class="sh"><i class="ti ti-world" aria-hidden="true"></i><h2>Sourdough <em>around the world</em></h2></div>
+  <p class="body-text">Wild fermentation evolved independently across the globe, adapting to local grains, climates, and traditions.</p>
+  <div class="tabs">
+    <button class="tb on" onclick="sw('world','europe',this)">Europe</button>
+    <button class="tb" onclick="sw('world','africa',this)">Africa</button>
+    <button class="tb" onclick="sw('world','americas',this)">The Americas</button>
+    <button class="tb" onclick="sw('world','asia',this)">Asia & Middle East</button>
+  </div>
+  <div id="world-europe" class="panel on">
+    <div class="card"><span class="card-tag" style="background:var(--wheat-light);color:var(--crust)">France</span><h3>Levain & pain de campagne</h3><p>French bakers refined wild-yeast bread into the boule and rustic country loaf. French baking law still regulates what can be sold as genuine sourdough.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--wheat-light);color:var(--crust)">Germany & Austria</span><h3>Sauerteig & dark rye</h3><p>Rye flour contains very little gluten — baker's yeast alone cannot raise it. Sourdough's acidity deactivates enzymes that would otherwise collapse the bread. Pumpernickel and Vollkornbrot have been made this way for centuries.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--wheat-light);color:var(--crust)">Italy</span><h3>Lievito madre & panettone</h3><p>Italian bakers maintained lievito madre (mother yeast) — a stiff starter kept almost like a dough. The foundation of panettone, one of the most technically demanding feats in baking.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--wheat-light);color:var(--crust)">Belgium & Netherlands</span><h3>Desem</h3><p>Flemish bakers developed desem (the word simply means "starter"), a stiff whole-wheat sourdough culture traditionally buried in flour to prevent drying out.</p></div>
+    <div class="ee-block">
+      <h3>Eastern Europe — a sourdough heartland</h3>
+      <p>No region has a more intimate daily relationship with sourdough. Here it was necessity, not a hobby — starters passed down in families for generations.</p>
+      <div class="ee-cols">
+        <div class="ee-col"><h4>Poland</h4><p>Zakwas & zurek — a sour rye soup fermented for days, still a beloved national dish.</p></div>
+        <div class="ee-col"><h4>Russia & Ukraine</h4><p>Borodinsky dark rye + kvass, brewed from stale sourdough bread for over 1,000 years.</p></div>
+        <div class="ee-col"><h4>Baltics & Balkans</h4><p>Latvian rupjmaize (legally protected), Romanian maia, starters kept in wooden vessels for decades.</p></div>
+        <div class="ee-col"><h4>Czech & Slovakia</h4><p>Kvásek & caraway rye — kvásek shares its root with kvass. Fermentation runs deep through the language.</p></div>
+      </div>
+    </div>
+  </div>
+  <div id="world-africa" class="panel">
+    <div class="card"><span class="card-tag" style="background:var(--ltteal);color:var(--teal)">Ethiopia & Eritrea</span><h3>Injera</h3><p>A large, spongy flatbread made from teff. The batter ferments for two to three days, attracting wild yeasts — no separate starter is used. The cooked injera serves as both plate and utensil.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--ltteal);color:var(--teal)">Sudan</span><h3>Kisra</h3><p>A fermented flatbread made from sorghum flour. The batter sours overnight before being cooked into a thin, crepe-like bread — a daily staple eaten with stews and lentils.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--ltteal);color:var(--teal)">Egypt (ancient)</span><h3>The cradle of leavened bread</h3><p>Ancient Egyptians are credited with discovering leavened bread. Hieroglyphics depict bakery scenes, and ancient bakery remains have been uncovered at Giza.</p></div>
+  </div>
+  <div id="world-americas" class="panel">
+    <div class="card"><span class="card-tag" style="background:var(--ltamber);color:var(--amber)">San Francisco, USA</span><h3>The iconic tang</h3><p>San Francisco's cool, foggy climate produced a uniquely sour bread. The Boudin Bakery has kept its original starter alive since 1849. The specific bacteria was named Fructilactobacillus sanfranciscensis after the city.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--ltamber);color:var(--amber)">Alaska & the Yukon</span><h3>Survival bread</h3><p>During the Klondike Gold Rush (1890s), prospectors carried sourdough starters as survival tools in brutal winters — keeping them warm against their bodies.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--ltamber);color:var(--amber)">Mexico</span><h3>Birote salado</h3><p>In Guadalajara, a crusty sourdough roll evolved from French baguette traditions. The local altitude and microbes give it a flavour said to be impossible to replicate anywhere else.</p></div>
+  </div>
+  <div id="world-asia" class="panel">
+    <div class="card"><span class="card-tag" style="background:var(--ltblue);color:var(--blue)">India</span><h3>Idli & dosa</h3><p>Rice and lentil batter fermented overnight. Steamed into soft idli cakes or spread thin as crispy dosas — one of India's most beloved breakfast traditions.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--ltblue);color:var(--blue)">Middle East</span><h3>Flatbreads & ancient tradition</h3><p>The Fertile Crescent — where agriculture began — is where early fermented flatbreads were almost certainly first made. Middle Eastern bakers still use naturally fermented doughs in flatbreads like pita and markook.</p></div>
+    <div class="card"><span class="card-tag" style="background:var(--ltblue);color:var(--blue)">Central Asia</span><h3>Tandyr breads</h3><p>Across Kazakhstan, Uzbekistan, and Tajikistan, naturally fermented doughs were baked in tandyr ovens. The resulting disc-shaped breads (non or lepyoshka) have a chewy, complex flavour from long, slow fermentation.</p></div>
+  </div>
+</div>
+
+<div id="names" class="sec">
+  <div class="sh"><i class="ti ti-language" aria-hidden="true"></i><h2>What the starter is called <em>around the world</em></h2></div>
+  <p class="body-text">Most names fall into three ideas: <em>mother</em>, <em>sour</em>, or <em>leaven</em> — each revealing what that culture values most about the tradition.</p>
+  <div class="ng">
+    <div class="nc"><span class="nw">Levain</span><span class="nco">French</span><span class="nm">"Leaven" — what it does</span></div>
+    <div class="nc"><span class="nw">Lievito madre</span><span class="nco">Italian</span><span class="nm">"Mother yeast" — lineage</span></div>
+    <div class="nc"><span class="nw">Masa madre</span><span class="nco">Spanish</span><span class="nm">"Mother dough" — the living origin</span></div>
+    <div class="nc"><span class="nw">Sauerteig</span><span class="nco">German</span><span class="nm">"Sour dough" — the flavour</span></div>
+    <div class="nc"><span class="nw">Zakwas</span><span class="nco">Polish</span><span class="nm">"Souring" — the process</span></div>
+    <div class="nc"><span class="nw">Zakvaská</span><span class="nco">Russian</span><span class="nm">"Souring agent"</span></div>
+    <div class="nc"><span class="nw">Zuurdesem</span><span class="nco">Dutch / Flemish</span><span class="nm">"Sour leaven"</span></div>
+    <div class="nc"><span class="nw">Surdeig</span><span class="nco">Danish / Norwegian</span><span class="nm">"Sour dough"</span></div>
+    <div class="nc"><span class="nw">Kvásek</span><span class="nco">Czech</span><span class="nm">"Little leaven" ← same root as kvass</span></div>
+    <div class="nc"><span class="nw">Maia</span><span class="nco">Romanian</span><span class="nm">"Mother" — from Latin mater</span></div>
+    <div class="nc"><span class="nw">Desem</span><span class="nco">Flemish</span><span class="nm">"Starter" — purely functional</span></div>
+    <div class="nc"><span class="nw">Kovász</span><span class="nco">Hungarian</span><span class="nm">"Leaven" — ancient Slavic loanword</span></div>
+  </div>
+  <div class="tip" style="margin-top:1rem;"><p><strong>Why "sourdough" in English?</strong> The name focuses on the tang made iconic in San Francisco, where French levain cultures turned noticeably more acidic in the local foggy climate. The sour note stuck — and so did the name.</p></div>
+</div>
+
+<div id="starter" class="sec">
+  <div class="sh"><i class="ti ti-flask" aria-hidden="true"></i><h2>Your <em>starter</em></h2></div>
+  <p class="body-text">A starter is flour and water that captures wild yeast and bacteria from the air and the flour itself. Fed regularly, it stays alive indefinitely — some have been passed down for generations.</p>
+  <div class="tip"><p><strong>The golden rule:</strong> your starter must be active, bubbly, and at or near its peak height before you use it. A weak starter = flat, dense bread.</p></div>
+  <div style="margin-top:1.75rem;">
+    <div class="sh" style="margin-bottom:1rem;"><i class="ti ti-calendar" aria-hidden="true"></i><h2>Creating from <em>scratch</em> (days 1–14)</h2></div>
+    <div class="tl">
+      <div class="ti2"><div class="td"></div><span class="badge">Day 1</span><h3>Mix equal parts flour and water</h3><p>50g wholemeal or rye flour + 50g room-temperature water. Stir, cover loosely (not airtight), leave at room temperature.</p></div>
+      <div class="ti2"><div class="td"></div><span class="badge">Days 2–5</span><h3>Discard and feed daily</h3><p>Pour away roughly half, then add 50g fresh flour + 50g water. Bubbles may appear. An odd smell at first is normal.</p></div>
+      <div class="ti2"><div class="td"></div><span class="badge">Days 6–10</span><h3>Activity increases</h3><p>Starter should reliably rise and fall after feedings. Mark the jar with a rubber band to track growth. A good starter doubles in 4–8 hours.</p></div>
+      <div class="ti2"><div class="td"></div><span class="badge">Days 10–14</span><h3>Ready to bake with</h3><p>When it consistently doubles, smells pleasantly sour (like yoghurt or beer), and a spoonful dropped in water floats, it's ready.</p></div>
+      <div class="ti2" style="margin-bottom:0"><div class="td"></div><span class="badge">Ongoing</span><h3>Store in the fridge</h3><p>Once established, keep in the fridge between bakes. Feed once a week. Take it out the night before baking, feed it, and let it peak at room temperature.</p></div>
+    </div>
+  </div>
+</div>
+
+<div id="feeding" class="sec">
+  <div class="sh"><i class="ti ti-droplet" aria-hidden="true"></i><h2>Feeding <em>ratios</em></h2></div>
+  <p class="body-text">A feeding ratio = <strong style="color:var(--crust)">starter : flour : water</strong>. Always feed by weight. The most common ratio for beginners is 1:1:1.</p>
+  <div class="rg">
+    <div class="rc"><div class="rl">Most common</div><div class="rn">1:1:1</div><div class="rs">Peaks in 4–8 hrs at 24°C</div></div>
+    <div class="rc"><div class="rl">Slower ferment</div><div class="rn">1:2:2</div><div class="rs">Warm days<br>Peaks in 8–12 hrs</div></div>
+    <div class="rc"><div class="rl">Very slow</div><div class="rn">1:5:5</div><div class="rs">Hot / overnight<br>Peaks in 12+ hrs</div></div>
+  </div>
+  <div class="tip" style="margin-top:1rem;"><p><strong>Example:</strong> 40g starter → add 40g flour + 40g water. Always use a kitchen scale — not cups.</p></div>
+  <div class="tip" style="margin-top:0.75rem;"><p><strong>Discard:</strong> The portion removed before feeding. Use it for pancakes, crackers, or flatbreads — never waste it.</p></div>
+</div>
+
+<div id="flour" class="sec">
+  <div class="sh"><i class="ti ti-grain" aria-hidden="true"></i><h2>Choosing your <em>flour</em></h2></div>
+  <p class="body-text">Start with the blend below. As you gain experience, experimenting with other flours is part of the fun — each one changes the flavour, texture, and fermentation speed.</p>
+  <div class="fg">
+    <div class="fc s"><span class="fb">Start here</span><h3>White wheat (400g)</h3><p>Your base. Mild flavour, easy to work with.</p></div>
+    <div class="fc s"><span class="fb">Start here</span><h3>Whole wheat (100g)</h3><p>Adds flavour and speeds up fermentation.</p></div>
+    <div class="fc"><h3>Rye flour</h3><p>Very active. 5–10% boosts starter and adds earthy flavour.</p></div>
+    <div class="fc"><h3>Spelt flour</h3><p>Nutty and sweet. Fragile gluten — handle gently. Up to 30%.</p></div>
+    <div class="fc"><h3>Bread / strong flour</h3><p>Higher protein. Better for open crumb once experienced.</p></div>
+    <div class="fc"><h3>Einkorn / emmer</h3><p>Ancient wheats. Deep flavour. Absorb less water — explore later.</p></div>
+  </div>
+  <div class="tip" style="margin-top:1rem;"><p><strong>Whole wheat speeds things up:</strong> wholemeal and rye carry more wild yeast. Increase their proportion and expect shorter bulk fermentation times.</p></div>
+</div>
+
+<div id="baking" class="sec">
+  <div class="sh"><i class="ti ti-bread" aria-hidden="true"></i><h2>Your first <em>loaf</em></h2></div>
+  <p class="body-text">Four ingredients: flour, water, salt, and starter. Watch the dough, not the clock.</p>
+  <div class="step"><div class="sn">1</div><div class="sc"><h3>Feed your starter</h3><p>Feed so it peaks when you're ready to mix. Plan 4–8 hours ahead.</p></div></div>
+  <div class="step"><div class="sn">2</div><div class="sc"><h3>Mix the dough (autolyse)</h3><p>400g white wheat + 100g whole wheat flour + 325g water. Mix until no dry flour remains. Cover and rest 30 minutes. This helps gluten develop without kneading.</p></div></div>
+  <div class="step"><div class="sn">3</div><div class="sc"><h3>Add starter and salt</h3><p>Add 100g active (peaked) starter and 9g salt. Squeeze and fold until fully incorporated. Sticky is normal.</p></div></div>
+  <div class="step"><div class="sn">4</div><div class="sc"><h3>Stretch and fold</h3><p>Every 30 minutes: grab one side, stretch up, fold over. Rotate, repeat 4 times. Do 4 sets over 2 hours. Dough becomes smoother and more elastic with each set.<div class="tip"><p>After the last set the dough should feel noticeably more cohesive and less sticky.</p></div></p></div></div>
+  <div class="step"><div class="sn">5</div><div class="sc"><h3>Bulk fermentation (3–6 hours)</h3><p>Leave to rise at room temperature until the dough has grown 50–75% and looks airy. Temperature affects this greatly — see weather tips.</p></div></div>
+  <div class="step"><div class="sn">6</div><div class="sc"><h3>Shape</h3><p>Turn onto a lightly floured surface. Fold into a round or oval, building surface tension. Place seam-side up in a floured banneton or bowl lined with a floured cloth.</p></div></div>
+  <div class="step"><div class="sn">7</div><div class="sc"><h3>Cold proof overnight</h3><p>Cover and refrigerate 8–16 hours. Slows fermentation, builds flavour, and makes scoring easier.</p></div></div>
+  <div class="step"><div class="sn">8</div><div class="sc"><h3>Bake in a Dutch oven</h3><p>Preheat oven to 230–250°C with Dutch oven inside (45 min preheat). Score the top, bake 20 min covered then 20–25 min uncovered until deep golden brown.<div class="tip"><p><strong>Why a Dutch oven?</strong> It traps steam so the crust stays flexible and the loaf rises fully. Remove the lid to get a crispy, crackly crust.</p></div></p></div></div>
+  <div class="step"><div class="sn">9</div><div class="sc"><h3>Cool completely before slicing</h3><p>Wait at least 1–2 hours. The crumb is still setting. Slicing too early makes it gummy.</p></div></div>
+</div>
+
+<div id="weather" class="sec">
+  <div class="sh"><i class="ti ti-cloud" aria-hidden="true"></i><h2>Weather <em>tips</em></h2></div>
+  <p class="body-text">The sweet spot is <strong style="color:var(--crust)">24–26°C</strong>. Your starter, dough, and air all interact. Click a condition.</p>
+  <div class="tabs">
+    <button class="tb on" onclick="sw('weather','ideal',this)">☀️ Ideal (20–26°C)</button>
+    <button class="tb" onclick="sw('weather','hot',this)">🔥 Hot (27°C+)</button>
+    <button class="tb" onclick="sw('weather','cold',this)">❄️ Cold (&lt;18°C)</button>
+    <button class="tb" onclick="sw('weather','humid',this)">💧 Humid</button>
+  </div>
+  <div id="weather-ideal" class="panel on"><div class="wcard" style="border-color:var(--wheat);border-top:2px solid var(--wheat-dark)"><h3 style="color:var(--crust)"><i class="ti ti-circle-check" aria-hidden="true" style="color:var(--wheat-dark)"></i>Ideal conditions — just bake normally</h3><div class="wtips"><div class="wt"><i class="ti ti-clock" aria-hidden="true" style="color:var(--wheat-dark)"></i><p>Standard 1:1:1 feeding ratio. Starter peaks in 4–8 hours.</p></div><div class="wt"><i class="ti ti-arrows-vertical" aria-hidden="true" style="color:var(--wheat-dark)"></i><p>Bulk fermentation takes 4–6 hours. Look for 50–75% dough growth.</p></div><div class="wt"><i class="ti ti-thumb-up" aria-hidden="true" style="color:var(--wheat-dark)"></i><p>Room temperature water works perfectly. No adjustments needed.</p></div></div></div></div>
+  <div id="weather-hot" class="panel"><div class="wcard" style="border-color:var(--wheat);border-top:2px solid #BA7517"><h3 style="color:var(--crust)"><i class="ti ti-flame" aria-hidden="true" style="color:#BA7517"></i>Hot weather — slow it down</h3><div class="wtips"><div class="wt"><i class="ti ti-droplet-off" aria-hidden="true" style="color:#BA7517"></i><p><strong>Use cold or iced water</strong> when mixing dough and feeding starter — most effective way to slow fermentation.</p></div><div class="wt"><i class="ti ti-minus" aria-hidden="true" style="color:#BA7517"></i><p><strong>Reduce starter amount:</strong> 15–20g at 25°C; as little as 5–10g overnight above 25°C.</p></div><div class="wt"><i class="ti ti-ruler" aria-hidden="true" style="color:#BA7517"></i><p><strong>Reduce hydration slightly</strong> if dough feels sticky — drop water by 5–10g.</p></div><div class="wt"><i class="ti ti-clock" aria-hidden="true" style="color:#BA7517"></i><p><strong>Watch the dough, not the clock</strong> — bulk fermentation can finish in 2–3 hours.</p></div><div class="wt"><i class="ti ti-square" aria-hidden="true" style="color:#BA7517"></i><p><strong>Use cool surfaces</strong> — marble or stone. Chill bowls in the fridge before use.</p></div></div></div></div>
+  <div id="weather-cold" class="panel"><div class="wcard" style="border-color:var(--wheat);border-top:2px solid #185FA5"><h3 style="color:var(--crust)"><i class="ti ti-snowflake" aria-hidden="true" style="color:#185FA5"></i>Cold weather — keep it warm</h3><div class="wtips"><div class="wt"><i class="ti ti-temperature" aria-hidden="true" style="color:#185FA5"></i><p><strong>Use warm water (up to 40°C)</strong> when mixing. Aim for 24–26°C dough temperature after mixing.</p></div><div class="wt"><i class="ti ti-home" aria-hidden="true" style="color:#185FA5"></i><p><strong>Find a warm spot</strong> — near the oven, on top of the fridge, or oven with just the light on.</p></div><div class="wt"><i class="ti ti-clock" aria-hidden="true" style="color:#185FA5"></i><p><strong>Expect everything to take longer</strong> — bulk fermentation may take 8–12 hours.</p></div><div class="wt"><i class="ti ti-plus" aria-hidden="true" style="color:#185FA5"></i><p><strong>Use slightly more starter</strong> to compensate for slow fermentation.</p></div><div class="wt"><i class="ti ti-leaf" aria-hidden="true" style="color:#185FA5"></i><p><strong>Boost with rye flour</strong> — ferments faster, helps sluggish starters in the cold.</p></div></div></div></div>
+  <div id="weather-humid" class="panel"><div class="wcard" style="border-color:var(--wheat);border-top:2px solid #0F6E56"><h3 style="color:var(--crust)"><i class="ti ti-cloud-rain" aria-hidden="true" style="color:#0F6E56"></i>Humid weather — reduce moisture</h3><div class="wtips"><div class="wt"><i class="ti ti-droplet-half" aria-hidden="true" style="color:#0F6E56"></i><p><strong>Reduce water by 10–20g</strong> — humidity adds moisture through the air.</p></div><div class="wt"><i class="ti ti-minus" aria-hidden="true" style="color:#0F6E56"></i><p><strong>Use less starter</strong> — humidity accelerates fermentation on top of temperature.</p></div><div class="wt"><i class="ti ti-wind" aria-hidden="true" style="color:#0F6E56"></i><p><strong>If humidity exceeds 50%</strong> — reduce hydration. Dough feels much wetter than the recipe suggests.</p></div><div class="wt"><i class="ti ti-alert-triangle" aria-hidden="true" style="color:#0F6E56"></i><p><strong>Watch your banneton</strong> — high humidity encourages mould. Dry thoroughly and dust generously.</p></div><div class="wt"><i class="ti ti-bread" aria-hidden="true" style="color:#0F6E56"></i><p><strong>Slice sooner</strong> — leaving bread on the counter for hours in humidity softens the crust.</p></div></div></div></div>
+</div>
+
+<div id="trouble" class="sec">
+  <div class="sh"><i class="ti ti-tool" aria-hidden="true"></i><h2>Troubleshooting</h2></div>
+  <div class="titem"><div class="thead" onclick="tog(this)"><i class="ti ti-arrow-down-circle ic" aria-hidden="true" style="color:var(--wheat-dark)"></i><span>My bread is flat and dense</span><i class="ti ti-chevron-down ch" aria-hidden="true"></i></div><div class="tbody"><p>• <strong>Starter wasn't active enough</strong> — use it only at peak, when bubbly and doubled.<br><br>• <strong>Under-fermented dough</strong> — the dough needs to grow 50–75% before shaping.<br><br>• <strong>Not enough stretch-and-fold sets</strong> — gluten needs to be developed.</p></div></div>
+  <div class="titem"><div class="thead" onclick="tog(this)"><i class="ti ti-droplet ic" aria-hidden="true" style="color:var(--wheat-dark)"></i><span>My crumb is gummy or doughy inside</span><i class="ti ti-chevron-down ch" aria-hidden="true"></i></div><div class="tbody"><p>• <strong>Sliced too early</strong> — wait at least 1–2 hours after baking.<br><br>• <strong>Under-baked</strong> — internal temperature should reach 96–98°C.<br><br>• <strong>Weak starter</strong> — the dough didn't fully develop.</p></div></div>
+  <div class="titem"><div class="thead" onclick="tog(this)"><i class="ti ti-arrows-maximize ic" aria-hidden="true" style="color:var(--wheat-dark)"></i><span>The dough spread sideways instead of rising</span><i class="ti ti-chevron-down ch" aria-hidden="true"></i></div><div class="tbody"><p>• <strong>Over-proofed</strong> — reduce room-temperature fermentation time by 1–2 hours.<br><br>• <strong>Poor shaping</strong> — not enough surface tension created.<br><br>• <strong>Too high hydration</strong> — try reducing water by 10–20g.</p></div></div>
+  <div class="titem"><div class="thead" onclick="tog(this)"><i class="ti ti-lemon-2 ic" aria-hidden="true" style="color:var(--wheat-dark)"></i><span>My bread is way too sour</span><i class="ti ti-chevron-down ch" aria-hidden="true"></i></div><div class="tbody"><p>• <strong>Starter too acidic</strong> — feed more frequently before baking to mellow it.<br><br>• <strong>Over-fermented dough</strong> — shorten the bulk ferment.<br><br>• <strong>Long cold proof</strong> — reduce overnight proof to 8–10 hours.</p></div></div>
+  <div class="titem"><div class="thead" onclick="tog(this)"><i class="ti ti-sun ic" aria-hidden="true" style="color:var(--wheat-dark)"></i><span>My crust is pale and soft, not crispy</span><i class="ti ti-chevron-down ch" aria-hidden="true"></i></div><div class="tbody"><p>• <strong>Under-fermented</strong> — sugars haven't developed enough for caramelisation.<br><br>• <strong>Lid left on too long</strong> — remove Dutch oven lid after 20 minutes.<br><br>• <strong>Oven not hot enough</strong> — preheat fully for at least 45 minutes at 230–250°C.</p></div></div>
+  <div class="titem"><div class="thead" onclick="tog(this)"><i class="ti ti-bubble ic" aria-hidden="true" style="color:var(--wheat-dark)"></i><span>My starter won't activate</span><i class="ti ti-chevron-down ch" aria-hidden="true"></i></div><div class="tbody"><p>• <strong>Too cold</strong> — move to above 22°C (oven with just the light on).<br><br>• <strong>Chlorinated water</strong> — use filtered water or leave tap water in an open jug overnight.<br><br>• <strong>Needs more time</strong> — a new starter can take 10–14 days. Feed twice a day.<br><br>• <strong>Add a pinch of rye flour</strong> — packed with wild yeast, it kick-starts activity.</p></div></div>
+</div>
+
+<div id="kit" class="sec">
+  <div class="sh"><i class="ti ti-package" aria-hidden="true"></i><h2>What you <em>need</em></h2></div>
+  <p class="body-text">Highlighted cards are non-negotiable. The rest are helpful but can be improvised.</p>
+  <div class="gg">
+    <div class="gc e"><i class="ti ti-scale" aria-hidden="true"></i><h3>Kitchen scale</h3><p>Non-negotiable. Sourdough is measured in grams, not cups.</p></div>
+    <div class="gc e"><i class="ti ti-building" aria-hidden="true"></i><h3>Dutch oven</h3><p>Essential for trapping steam and getting a proper crust and rise.</p></div>
+    <div class="gc e"><i class="ti ti-glass-full" aria-hidden="true"></i><h3>Glass jar</h3><p>For your starter. Transparent so you can see activity. Loosely covered.</p></div>
+    <div class="gc"><i class="ti ti-temperature" aria-hidden="true"></i><h3>Thermometer</h3><p>Check water, dough, and room temperature. Very helpful.</p></div>
+    <div class="gc"><i class="ti ti-box" aria-hidden="true"></i><h3>Banneton</h3><p>For shaping. A floured bowl lined with a cloth towel works just as well.</p></div>
+    <div class="gc"><i class="ti ti-cut" aria-hidden="true"></i><h3>Lame or sharp blade</h3><p>For scoring. A very sharp serrated knife also works.</p></div>
+  </div>
+  <div class="tip" style="margin-top:1.25rem;"><p><strong>Flour tip:</strong> Start with white wheat (400g) + whole wheat (100g). As you get comfortable, explore rye, spelt, or stronger bread flour for new flavours and textures.</p></div>
+</div>
+
+<div class="closing">
+  <p>"Sourdough survived because it requires no industrial infrastructure — only flour, water, and time. Empires rose and fell. Trade routes shifted. The starter endured, passed from hand to hand across six thousand years."</p>
+  <p>Wild Crumb · Flour · Water · Salt · Time</p>
+</div>
+
+</div>
+
+<script>
+function go(id){const el=document.getElementById(id);if(el)el.scrollIntoView({behavior:'smooth',block:'start'});}
+function sw(group,id,btn){
+  document.querySelectorAll(`[id^="${group}-"]`).forEach(p=>p.classList.remove('on'));
+  document.getElementById(`${group}-${id}`).classList.add('on');
+  btn.closest('.tabs').querySelectorAll('.tb').forEach(b=>{b.classList.remove('on');b.style.cssText='';});
+  btn.classList.add('on');
+}
+function tog(h){
+  const b=h.nextElementSibling,c=h.querySelector('.ch');
+  const open=b.classList.contains('on');
+  document.querySelectorAll('.tbody.on').forEach(x=>x.classList.remove('on'));
+  document.querySelectorAll('.ch.rot').forEach(x=>x.classList.remove('rot'));
+  if(!open){b.classList.add('on');c.classList.add('rot');}
+}
+</script>
